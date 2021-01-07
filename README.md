@@ -6,3 +6,18 @@ This can be installed on your Ubuntu server and with this you can launch differe
 
 
 There's no docs or anything if you can understand the code use it if not just go away.
+
+
+
+# GUI Selling panels support
+
+- [X] Whmcs Support (Main)
+
+
+# Game List Supported
+
+- [] HLDS
+- [] GTA
+- [] Minecraft
+- [] Factorio
+- [] L4D2
