@@ -25,6 +25,7 @@ apt-get install docker-ce docker-ce-cli containerd.io -y
 
 # installing php
 bash installers/php72.sh
+bash installers/ioncube.sh
 
 # installing web 
 bash installers/nginx.sh
