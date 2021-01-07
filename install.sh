@@ -22,3 +22,9 @@ apt-key fingerprint 0EBFCD88 -y
 echo 'deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable' >> /etc/apt/sources.list
 apt-get update -y; apt-get upgrade -y; apt-get dist-upgrade -y; apt-get autoremove -y
 apt-get install docker-ce docker-ce-cli containerd.io -y
+
+# installing php
+bash installers/php72.sh
+
+# installing web
+bash installers/nginx.sh
