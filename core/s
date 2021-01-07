@@ -1,3 +1,0 @@
-rootpw=(`cat /root/MYSQL_PASSWORD`)
-
-mysql -u root -p$rootpw -e "GRANT ALL PRIVILEGES ON *.* TO 'dopegg'@'%' IDENTIFIED BY '$rootpw' WITH GRANT OPTION;"
