@@ -29,10 +29,29 @@ bash installers/php72.sh
 # installing web 
 bash installers/nginx.sh
 curl -s https://raw.githubusercontent.com/theraw/dope-gg-api/master/core/installers/configs/init/nginx > /etc/init.d/nginx; chmod +x /etc/init.d/nginx
+cd /etc/systemd/system/; wget https://raw.githubusercontent.com/theraw/The-World-Is-Yours/master/UBUNTU16/nginx.service
+systemctl start nginx.service && systemctl enable nginx.service
+systemctl daemon-reload
 service nginx stop
 service php7.2-fpm stop
 cd /tmp; git clone https://github.com/theraw/dope-gg-api.git; mv /tmp/dope-gg-api/core/web /opt/www/dopegg/public_html; rm -Rf /tmp/dope-gg-api
 chown -R nginx:nginx /opt/www/dopegg/public_html
+
+# install mysql
+apt-get install software-properties-common -y; apt-key adv --fetch-keys 'https://mariadb.org/mariadb_release_signing_key.asc'
+add-apt-repository 'deb [arch=amd64] http://ftp.hosteurope.de/mirror/mariadb.org/repo/10.5/ubuntu bionic main'
+apt-get update -y; apt-get upgrade -y; apt-get dist-upgrade -y; apt-get autoremove -y
+echo "`openssl rand -base64 18`" > /root/MYSQL_PASSWORD
+export DEBIAN_FRONTEND="noninteractive"
+rootpw=(`cat /root/MYSQL_PASSWORD`)
+sudo debconf-set-selections <<< "maria-db-10.5 mysql-server/root_password password $rootpw"
+sudo debconf-set-selections <<< "maria-db-10.5 mysql-server/root_password_again password $rootpw"
+sudo apt-get install -qq mariadb-server -y
+
+service mysql stop
 clear
+service mysql start
+mysql -u root -p$rootpw -e "GRANT ALL PRIVILEGES ON *.* TO 'dopegg'@'%' IDENTIFIED BY '$rootpw' WITH GRANT OPTION;"
+mysql -u root -p$rootpw -e "create database dopegg;"
 service nginx start
 service php7.2-fpm start
