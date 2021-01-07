@@ -53,7 +53,3 @@ useradd nginx
 curl -s https://raw.githubusercontent.com/theraw/dope-gg-api/master/core/installers/configs/nginx.conf > /nginx/nginx.conf
 mkdir -p /opt/www/dopegg/public_html
 chown -R nginx:nginx /opt/www/dopegg/public_html
-service nginx start
-clear
-service nginx status
-service php7.2-fpm status
