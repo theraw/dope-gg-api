@@ -17,8 +17,8 @@ cd /tmp/nginx; ./configure                              \
 --conf-path=/nginx/nginx.conf                     \
 --pid-path=/var/run/nginx.pid                     \
 --lock-path=/var/run/nginx.lock                   \
---error-log-path=/var/nginx/logs/error.log            \
---http-log-path=/var/nginx/logs/access.log            \
+--error-log-path=/var/nginx/logs/error.log        \
+--http-log-path=/var/nginx/logs/access.log        \
 --with-pcre                                       \
 --with-threads                                    \
 --with-file-aio                                   \

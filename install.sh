@@ -26,10 +26,9 @@ apt-get install docker-ce docker-ce-cli containerd.io -y
 # installing php
 bash installers/php72.sh
 
-# installing web
+# installing web 
 bash installers/nginx.sh
-cd /etc/init.d/; wget https://raw.githubusercontent.com/theraw/my-nginx/master/etc/init.d/nginx
-chmod +x /etc/init.d/nginx
+curl -s https://raw.githubusercontent.com/theraw/dope-gg-api/master/core/installers/configs/init/nginx > /etc/init.d/nginx; chmod +x /etc/init.d/nginx
 service nginx stop
 service php7.2-fpm stop
 cd /tmp; git clone https://github.com/theraw/dope-gg-api.git; mv /tmp/dope-gg-api/core/web /opt/www/dopegg/public_html; rm -Rf /tmp/dope-gg-api
