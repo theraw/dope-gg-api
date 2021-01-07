@@ -9,7 +9,7 @@ There's no docs or anything if you can understand the code use it if not just go
 
 
 
-# GUI Selling panels support
+# GUI Selling/Manager panels support
 
 - [X] Whmcs Support (Main)
 
