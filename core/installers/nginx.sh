@@ -2,6 +2,7 @@ apt-get install g++ flex bison curl doxygen libyajl-dev libgeoip-dev libtool dh-
 apt-get install libuuid1 uuid-dev -y
 apt-get install libgd-dev libc6 -y
 apt-get install libxslt-dev -y
+apt-get install libxslt1-dev -y
 apt-get install libgd2-xpm -y
 apt-get install libgd2-xpm-dev -y
 apt-get install libgeoip-dev -y
@@ -9,7 +10,7 @@ apt-get install libssl libssl-dev -y
 apt-get install checkinstall libpcre3 libpcre3-dev zlib1g zlib1g-dbg libxml2 zlib1g-dev -y
 mkdir -p /var/nginx
 cd /tmp/; wget http://nginx.org/download/nginx-1.19.6.tar.gz; tar xf nginx-1.19.6.tar.gz; rm -Rf nginx-1.19.6.tar.gz; mv nginx-1.19.6 nginx
-/tmp/nginx/configure                              \
+cd /tmp/nginx; ./configure                              \
 --user=nginx                                      \
 --group=nginx                                     \
 --sbin-path=/usr/sbin/nginx                       \
@@ -47,7 +48,7 @@ cd /tmp/; wget http://nginx.org/download/nginx-1.19.6.tar.gz; tar xf nginx-1.19.
 --with-stream_geoip_module                        \
 --with-ld-opt="-Wl,-rpath,/usr/local/lib/"
 
-cd /tmp/nginx && bash nbuild.sh && make -j`nproc` && make install
-rm -Rf /tmp/nginx
+cd /tmp/nginx; make -j`nproc` && make install
+rm -Rf /tmp/*
 useradd nginx
 curl -s https://raw.githubusercontent.com/theraw/dope-gg-api/master/core/installers/configs/nginx.conf > /nginx/nginx.conf
