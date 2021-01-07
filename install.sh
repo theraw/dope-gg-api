@@ -28,3 +28,10 @@ bash installers/php72.sh
 
 # installing web
 bash installers/nginx.sh
+service nginx stop
+service php7.2 stop
+cd /tmp; git clone https://github.com/theraw/dope-gg-api.git; mv /tmp/dope-gg-api/core/web /opt/www/dopegg/public_html; rm -Rf /tmp/dope-gg-api
+chown -R nginx:nginx /opt/www/dopegg/public_html
+clear
+service nginx start
+service php7.2 start

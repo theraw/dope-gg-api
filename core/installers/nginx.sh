@@ -51,5 +51,3 @@ cd /tmp/nginx && bash nbuild.sh && make -j`nproc` && make install
 rm -Rf /tmp/nginx
 useradd nginx
 curl -s https://raw.githubusercontent.com/theraw/dope-gg-api/master/core/installers/configs/nginx.conf > /nginx/nginx.conf
-mkdir -p /opt/www/dopegg/public_html
-chown -R nginx:nginx /opt/www/dopegg/public_html
