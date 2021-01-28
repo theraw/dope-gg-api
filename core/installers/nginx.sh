@@ -7,10 +7,16 @@ apt-get install libgd2-xpm -y
 apt-get install libgd2-xpm-dev -y
 apt-get install libgeoip-dev -y
 apt-get install libssl libssl-dev -y
+apt-get install mercurial -y
+sudo add-apt-repository ppa:maxmind/ppa -y 
+apt-get update -y; apt-get upgrade -y; apt install libmaxminddb0 libmaxminddb-dev mmdb-bin -y
 apt-get install checkinstall libpcre3 libpcre3-dev zlib1g zlib1g-dbg libxml2 zlib1g-dev -y
-mkdir -p /var/nginx
+mkdir -p /var/nginx; rm -Rf /tmp/*
 cd /tmp/; wget http://nginx.org/download/nginx-1.19.6.tar.gz; tar xf nginx-1.19.6.tar.gz; rm -Rf nginx-1.19.6.tar.gz; mv nginx-1.19.6 nginx
-cd /tmp/nginx; ./configure                              \
+git clone https://github.com/openresty/headers-more-nginx-module.git /tmp/headers
+git clone https://github.com/leev/ngx_http_geoip2_module.git /tmp/geoip2
+git clone https://github.com/nginx/njs.git /tmp/js
+cd /tmp/nginx; ./configure                        \
 --user=nginx                                      \
 --group=nginx                                     \
 --sbin-path=/usr/sbin/nginx                       \
@@ -46,8 +52,10 @@ cd /tmp/nginx; ./configure                              \
 --with-stream_ssl_module                          \
 --with-stream_realip_module                       \
 --with-stream_geoip_module                        \
---with-ld-opt="-Wl,-rpath,/usr/local/lib/"
-
+--with-ld-opt="-Wl,-rpath,/usr/local/lib/"        \
+--add-module=/tmp/js/nginx                        \
+--add-module=/tmp/geoip2                          \
+--add-module=/tmp/headers
 cd /tmp/nginx; make -j`nproc` && make install
 rm -Rf /tmp/*
 useradd nginx

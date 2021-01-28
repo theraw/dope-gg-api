@@ -1,0 +1,1 @@
+ffmpeg -y -i "https://tv.balkanweb.com/news24/livestream/playlist.m3u8" -hls_time 2 -hls_key_info_file enc.keyinfo -hls_segment_filename "fileSequence%d.ts" news24.m3u8
